@@ -21,4 +21,16 @@ class SentimentClassifierTest {
         val score = service.score(phrase)
         println(score)
     }
+
+    @Test fun `Test Classify Negative Phrase`() {
+        val phrase = "The food was aweful and the service was terrible."
+        val score = service.score(phrase)
+        println(score)
+    }
+
+    @Test fun `Test Classify Mildly Negative Phrase`() {
+        val phrase = "The food was terrible but the service was ok."
+        val score = service.score(phrase)
+        println(score)
+    }
 }
