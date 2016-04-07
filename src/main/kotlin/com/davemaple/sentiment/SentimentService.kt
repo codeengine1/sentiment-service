@@ -18,11 +18,11 @@ class SentinetService {
         dictionary = mutableMapOf()
         val tempDictionary: MutableMap<String, HashMap<Int, Double>> = mutableMapOf()
 
-        var csv: BufferedReader = BufferedReader(InputStreamReader(
+        var sentiwordnet: BufferedReader = BufferedReader(InputStreamReader(
                 this.javaClass.classLoader.getResourceAsStream("sentiwordnet.txt"), "UTF-8"))
         var lineNumber = 0
 
-        for (line in csv.lineSequence()) {
+        for (line in sentiwordnet.lineSequence()) {
             lineNumber++
 
             if (!line.trim { it <= ' ' }.startsWith("#")) {
@@ -30,7 +30,7 @@ class SentinetService {
                 val wordTypeMarker = data[0]
 
                 if (data.size != 6) {
-                    logger.error("Incorrect tabulation format in file, line: " + lineNumber)
+                    logger.error("Incorrect format in sentiwordnet, line: " + lineNumber)
                     continue
                 }
 
@@ -71,7 +71,7 @@ class SentinetService {
      * @param partOfSpeech
      * @return score
      */
-    fun extract(word: String, partOfSpeech: String): Double? {
+    fun classify(word: String, partOfSpeech: String): Double? {
         return dictionary[word + "#" + partOfSpeech]
     }
 }

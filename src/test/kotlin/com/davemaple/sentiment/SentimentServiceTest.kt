@@ -9,10 +9,10 @@ class SentimentServiceTest {
 
     val service = SentinetService();
 
-    @Test fun `Test Extract`() {
-        println("good#a " + service.extract("good", "a"))
-        println("bad#a " + service.extract("bad", "a"))
-        println("blue#a " + service.extract("blue", "a"))
-        println("blue#n " + service.extract("blue", "n"))
+    @Test fun `Test Classify Words`() {
+        println("awesome#a " + service.classify("awesome", "a"))
+        println("crappy#a " + service.classify("crappy", "a"))
+        println("well#a " + service.classify("well", "a"))
+        println("well#n " + service.classify("well", "n"))
     }
 }
