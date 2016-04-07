@@ -11,7 +11,8 @@ import java.util.*
  */
 class SentinetService {
 
-    private val dictionary: MutableMap<String, Double>
+    private val posTagger = PartOfSpeechTagger()
+    private val dictionary: Map<String, Double>
     private val logger = LoggerFactory.getLogger(SentinetService::class.java)
 
     init {
@@ -71,7 +72,25 @@ class SentinetService {
      * @param partOfSpeech
      * @return score
      */
-    fun classify(word: String, partOfSpeech: String): Double? {
+    fun score(word: String, partOfSpeech: String): Double? {
         return dictionary[word + "#" + partOfSpeech]
+    }
+
+    fun score(phrase: String): Double {
+        var sentiment = 0.0
+        val taggedWords = posTagger.tag(phrase)
+
+        for (taggedWord in taggedWords) {
+            val sentiTag = PartOfSpeech.pennToSentiPOS(taggedWord.tag())
+
+            if (sentiTag.isEmpty()) {
+                continue
+            }
+
+            val wordSentiment = score(taggedWord.word(), sentiTag) ?: continue
+            sentiment += wordSentiment
+        }
+
+        return sentiment
     }
 }

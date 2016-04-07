@@ -1,6 +1,7 @@
 package com.davemaple.sentiment
 
 import edu.stanford.nlp.ling.TaggedWord
+import edu.stanford.nlp.process.Morphology
 import edu.stanford.nlp.process.PTBTokenizer
 import edu.stanford.nlp.tagger.maxent.MaxentTagger
 import edu.stanford.nlp.tagger.maxent.TaggerConfig
@@ -34,7 +35,9 @@ class PartOfSpeechTagger {
             taggedWords.addAll(tagger.tagSentence(sentence))
         }
 
-        return taggedWords.asSequence()
+        return taggedWords.asSequence().map {
+            TaggedWord(Morphology.lemmaStatic(it.word(), it.tag(), true), it.tag())
+        }
     }
 
     /**
