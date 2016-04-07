@@ -72,11 +72,11 @@ class SentinetService {
      * @param partOfSpeech
      * @return score
      */
-    fun score(word: String, partOfSpeech: String): Double? {
+    fun classifyWord(word: String, partOfSpeech: String): Double? {
         return dictionary[word + "#" + partOfSpeech]
     }
 
-    fun score(phrase: String): Double {
+    fun classifyPhrase(phrase: String): Double {
         var sentiment = 0.0
         val taggedWords = posTagger.tag(phrase)
 
@@ -87,10 +87,21 @@ class SentinetService {
                 continue
             }
 
-            val wordSentiment = score(taggedWord.word(), sentiTag) ?: continue
+            val wordSentiment = classifyWord(taggedWord.word(), sentiTag) ?: continue
             sentiment += wordSentiment
         }
 
         return sentiment
+    }
+
+    fun classifySentences(sentences: String): Double {
+        val longPhraseSentences = sentences.split(".")
+        val scores = ArrayList<Double>()
+
+        for (sentence in longPhraseSentences) {
+            scores.add(classifyPhrase(sentence))
+        }
+
+        return scores.average()
     }
 }
