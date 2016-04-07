@@ -26,9 +26,9 @@ data class PartOfSpeech(val pennTreeTag: String, val desc: String, val wordnetTa
         val POSSESSIVE_ENDING = PartOfSpeech("POS", "Possessive ending", "")
         val PERSONAL_PRONOUN = PartOfSpeech("PRP", "Personal pronoun", "")
         val POSSESSIVE_PRONOUN = PartOfSpeech("PRP$", "Possessive pronoun", "")
-        val ADVERB = PartOfSpeech("RB", "Adverb", "")
-        val ADVERB_COMPARATIVE = PartOfSpeech("RBR", "Adverb, comparative", "")
-        val ADVERB_SUPERLATIVE = PartOfSpeech("RBS", "Adverb, superlative", "")
+        val ADVERB = PartOfSpeech("RB", "Adverb", "r")
+        val ADVERB_COMPARATIVE = PartOfSpeech("RBR", "Adverb, comparative", "r")
+        val ADVERB_SUPERLATIVE = PartOfSpeech("RBS", "Adverb, superlative", "r")
         val PARTICLE = PartOfSpeech("RP", "Particle", "")
         val SYMBOL = PartOfSpeech("SYM", "Symbol", "")
         val TO = PartOfSpeech("TO", "to", "")
@@ -42,7 +42,7 @@ data class PartOfSpeech(val pennTreeTag: String, val desc: String, val wordnetTa
         val WH_DETERMINER = PartOfSpeech("WDT", "Wh-determiner", "")
         val WH_PRONOUN = PartOfSpeech("WP", "Wh-pronoun", "")
         val POSSESSIVE_WH_PRONOUN = PartOfSpeech("WP$", "Possessive wh-pronoun", "")
-        val WH_ADVERB = PartOfSpeech("WRB", "Wh-adverb", "")
+        val WH_ADVERB = PartOfSpeech("WRB", "Wh-adverb", "r")
 
         val PENN_TAG_MAP = mapOf<String, PartOfSpeech>(
                 COORDINATING_CONJUNCTION.pennTreeTag to COORDINATING_CONJUNCTION,
