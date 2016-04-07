@@ -1,6 +1,7 @@
 # sentiment-service
 
 The project goal is to be able to classify english phrases by sentiment (positive or negative). 
+The source code is Kotlin and the Services are fully compatible with Java and Scala.
 
 # attribution 
 
