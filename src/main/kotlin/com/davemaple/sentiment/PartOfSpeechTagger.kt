@@ -11,15 +11,13 @@ import java.util.*
  * @author <a href="mailto:d@davemaple.com">David Maple</a>
  */
 class PartOfSpeechTagger {
-    val tokenizer = PTBTokenizer.PTBTokenizerFactory.newWordTokenizerFactory("");
-    val config: TaggerConfig
     val tagger: MaxentTagger
 
     init {
         val properties = Properties()
         properties.put("model", "models/english-left3words-distsim.tagger")
         properties.put("outputFormatOptions", "lemmatize")
-        config = TaggerConfig(properties)
+        val config = TaggerConfig(properties)
         tagger = MaxentTagger(config);
     }
 
@@ -28,6 +26,7 @@ class PartOfSpeechTagger {
      * @return taggedWords
      */
     fun tag(phrase: String): Sequence<TaggedWord> {
+        val tokenizer = PTBTokenizer.PTBTokenizerFactory.newWordTokenizerFactory("");
         val tokenizedSentences = MaxentTagger.tokenizeText(StringReader(phrase), tokenizer)
         val taggedWords: MutableList<TaggedWord> = mutableListOf()
 
