@@ -7,10 +7,18 @@ import org.junit.Test
  */
 class PartOfSpeechTaggerTest {
     val tagger = PartOfSpeechTagger()
+    val phrase = "I like to swim in the pond. It's still cold this time of year."
+
+    @Test fun `Test Tag As String`() {
+        val taggedString = tagger.tagAsString(phrase)
+        println(taggedString)
+    }
 
     @Test fun `Test Tag Phrase`() {
-        val phrase = "I like to swim in the pond."
-        val tagged = tagger.tag(phrase)
-        println(tagged)
+        val taggedWords = tagger.tag(phrase)
+
+        for (taggedWord in taggedWords) {
+            println("${taggedWord.value()}: ${taggedWord.tag()}")
+        }
     }
 }
