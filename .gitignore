@@ -20,6 +20,9 @@ src/test/resources/test.application.conf
 
 .gradle
 build/
+gradle
+gradlew
+lib
 
 # Ignore Gradle GUI config
 gradle-app.setting
